@@ -1,10 +1,12 @@
 {
-  "name": "tnt-photobox",
-  "version": "1.0.2",
+  "name": "tnt-lightbox",
+  "version": "0.0.1",
   "description": "Super simple responsive lightbox",
-  "main": "src/Photobox.js",
+  "main": "./distribution/lightbox.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --presets babel-preset-es2015 --out-dir distribution",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "lightbox",
@@ -14,16 +16,17 @@
     "swipe",
     "gallery",
     "photo",
-    "responsive"
+    "responsive",
+    "videobox"
   ],
   "author": {
-    "name": "Rein Van Oyen",
-    "email": "rein@tnt.be",
+    "name": "Dieter Vyncke",
+    "email": "dieter@tnt.be",
     "url": "http://www.tnt.be"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reinvanoyen/tnt-photobox.git"
+    "url": "https://github.com/DieterVyncke/tnt-lightbox.git"
   },
   "license": "MIT",
   "devDependencies": {

@@ -1,25 +1,26 @@
 "use strict";
 
-var utils = {};
+const utils = {
 
-utils.loadImage = function( src, cb ) {
+	loadImage( src, cb ) {
+		let img =  new Image();
 
-	var img = new Image();
+		img.onload = () => {
+			cb( img );
+		};
 
-	img.onload = function() {
+		img.src = src;
+	},
 
-		cb( img );
+	proxy( c, f ) {
+		return function() {
+			return f.apply( c, arguments );
+		};
+	},
+
+	startsWith( subject, search ) {
+		return subject.substring( 0, search.length ) == search;
 	}
-
-	img.src = src;
 };
 
-utils.proxy = function( c, f ) {
-
-	return function() {
-
-		return f.apply( c, arguments );
-	};
-};
-
-module.exports = utils;
+export default utils;

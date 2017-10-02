@@ -1,7 +1,4 @@
-# tnt-photobox
-## Super simple responsive lightbox
-
-Designed to be used with [browserify](http://www.browserify.org).
+# tnt-lightbox
 
 ### Getting started
 
@@ -14,6 +11,6 @@ $ npm install tnt-photobox
 Add it to your Javascript:
 
 ```javascript
-var Photobox = require('tnt-photobox');
-new Photobox( $( 'a.tnt-photobox' ) );
+var Lightbox = require('tnt-lightbox');
+new Lightbox( $( 'a.tnt-lightbox' ) );
 ```
