@@ -49,19 +49,19 @@ class Lightbox {
 		this.box = document.createElement( 'div' );
 		this.overlay.appendChild( this.box );
 
-		[].forEach.call( this.elements, el => {
-			el.addEventListener( 'click', el => { this.click( el ) } );
-		} );
+		for( let i = 0; i < this.elements.length; i++ ) {
+			this.elements[ i ].addEventListener( 'click', e => { this.click( e ) } );
+		}
 
 		this.prev.addEventListener( 'click', () => { this.openPrev() } );
 		this.next.addEventListener( 'click', () => { this.openNext() } );
 		this.close.addEventListener( 'click', () => { this.close() } );
 	}
 
-	click( el ) {
+	click( event ) {
 
-		this.open( el.target );
-		el.preventDefault();
+		this.open( event.currentTarget );
+		event.preventDefault();
 	}
 
 	openNext() {
