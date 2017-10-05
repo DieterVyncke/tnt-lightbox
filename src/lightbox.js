@@ -51,7 +51,8 @@ class Lightbox {
 
 		[].forEach.call( this.elements, el => {
 			el.addEventListener( 'click', el => { this.click( el ) } );
-		} ) ;
+		} );
+
 		this.prev.addEventListener( 'click', () => { this.openPrev() } );
 		this.next.addEventListener( 'click', () => { this.openNext() } );
 		this.close.addEventListener( 'click', () => { this.close() } );
@@ -61,12 +62,6 @@ class Lightbox {
 
 		this.open( el.target );
 		el.preventDefault();
-	}
-
-	close() {
-
-		this.box.innerHTML = '';
-		this.overlay.classList.add( 'hidden' );
 	}
 
 	openNext() {
@@ -145,16 +140,22 @@ class Lightbox {
 
 			} else if( extension.match( /(jpg|png)/ ) ) {
 
-				util.loadImage( url, util.proxy( this, ( img ) => {
+				util.loadImage( url, img => {
 					this.box.appendChild( img );
 					this.overlay.classList.remove( 'loading' );
-				} ) );
+				} );
 			}
 		}
 	}
 
 	getIndex( el ) {
 		return [ ...this.elements ].indexOf( el );
+	}
+
+	close() {
+
+		this.box.innerHTML = '';
+		this.overlay.classList.add( 'hidden' );
 	}
 
 	hide( el ) {

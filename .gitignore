@@ -1,3 +1,5 @@
 /node_modules
+/distribution
+/build
 .idea
 .DS_Store

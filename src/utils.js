@@ -12,12 +12,6 @@ const utils = {
 		img.src = src;
 	},
 
-	proxy( c, f ) {
-		return function() {
-			return f.apply( c, arguments );
-		};
-	},
-
 	startsWith( subject, search ) {
 		return subject.substring( 0, search.length ) == search;
 	}

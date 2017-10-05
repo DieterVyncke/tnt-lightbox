@@ -10,14 +10,14 @@
   },
   "keywords": [
     "lightbox",
-    "jquery",
     "photobox",
+    "videobox",
     "overlay",
     "swipe",
     "gallery",
     "photo",
-    "responsive",
-    "videobox"
+    "video",
+    "responsive"
   ],
   "author": {
     "name": "Dieter Vyncke",
