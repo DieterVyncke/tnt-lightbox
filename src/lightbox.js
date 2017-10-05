@@ -34,9 +34,9 @@ class Lightbox {
 		this.overlay.className += 'tnt-lightbox-overlay hidden';
 		document.body.appendChild( this.overlay );
 
-		this.close = document.createElement( 'button' );
-		this.close.classList.add( 'tnt-lightbox-close' );
-		this.overlay.appendChild( this.close );
+		this.closeButton = document.createElement( 'button' );
+		this.closeButton.classList.add( 'tnt-lightbox-close' );
+		this.overlay.appendChild( this.closeButton );
 
 		this.prev = document.createElement( 'button' );
 		this.prev.classList.add( 'tnt-lightbox-prev' );
@@ -55,7 +55,13 @@ class Lightbox {
 
 		this.prev.addEventListener( 'click', () => { this.openPrev() } );
 		this.next.addEventListener( 'click', () => { this.openNext() } );
-		this.close.addEventListener( 'click', () => { this.close() } );
+		this.closeButton.addEventListener( 'click', () => { this.close() } );
+	}
+
+	close() {
+
+		this.box.innerHTML = '';
+		this.overlay.classList.add( 'hidden' );
 	}
 
 	click( event ) {
@@ -150,12 +156,6 @@ class Lightbox {
 
 	getIndex( el ) {
 		return [ ...this.elements ].indexOf( el );
-	}
-
-	close() {
-
-		this.box.innerHTML = '';
-		this.overlay.classList.add( 'hidden' );
 	}
 
 	hide( el ) {
