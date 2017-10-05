@@ -31,7 +31,7 @@ class Lightbox {
 		} );
 
 		this.overlay = document.createElement( 'div' );
-		this.overlay.className += 'tnt-photobox-overlay hidden';
+		this.overlay.className += 'tnt-lightbox-overlay hidden';
 		document.body.appendChild( this.overlay );
 
 		this.close = document.createElement( 'button' );
