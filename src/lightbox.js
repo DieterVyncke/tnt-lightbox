@@ -9,6 +9,7 @@ class Lightbox {
 		this.elements = elements;
 		this.count = elements.length;
 		this.index = null;
+		this.body = document.querySelector( 'body' );
 
 		this.build();
 	}
@@ -59,13 +60,13 @@ class Lightbox {
 	}
 
 	close() {
-
+		this.body.classList.toggle( 'lightbox-open' );
 		this.box.innerHTML = '';
 		this.overlay.classList.add( 'hidden' );
 	}
 
 	click( event ) {
-
+		this.body.classList.toggle( 'lightbox-open' );
 		this.open( event.currentTarget );
 		event.preventDefault();
 	}
@@ -76,13 +77,12 @@ class Lightbox {
 	}
 
 	openPrev() {
-
 		this.openByIndex( this.index - 1 );
 	}
 
 	openByIndex( currentIndex ) {
 
-		if( currentIndex >= 0 ) {
+		if( currentIndex >= 0 && currentIndex < this.elements.length ) {
 			let element = this.elements[ currentIndex ];
 			this.open( element );
 		}
@@ -150,6 +150,12 @@ class Lightbox {
 					this.box.appendChild( img );
 					this.overlay.classList.remove( 'loading' );
 				} );
+			}
+
+			if( el.getAttribute( 'data-description' ) ) {
+				this.description = document.createElement( 'p' );
+				this.description.innerHTML = el.getAttribute( 'data-description' );
+				this.box.appendChild( this.description );
 			}
 		}
 	}
