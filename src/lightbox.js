@@ -150,7 +150,7 @@ class Lightbox {
 
 				this.overlay.classList.remove( 'loading' );
 
-			} else if( extension.match( /(jpg|png)/ ) ) {
+			} else if( extension.match( /(jpg|jpeg|png)/ ) ) {
 
 				util.loadImage( url, img => {
 					this.box.appendChild( img );
