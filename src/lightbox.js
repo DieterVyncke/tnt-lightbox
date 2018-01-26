@@ -9,26 +9,13 @@ class Lightbox {
 		this.elements = elements;
 		this.count = elements.length;
 		this.index = null;
+		this.body = document.querySelector( 'body' );
+		this.opened = false;
 
 		this.build();
 	}
 
 	build() {
-
-		document.addEventListener( 'keydown', e => {
-
-			switch( e.keyCode ) {
-				case 27:
-					this.close();
-					break;
-				case 37:
-					this.openPrev();
-					break;
-				case 39:
-					this.openNext();
-					break;
-			}
-		} );
 
 		this.overlay = document.createElement( 'div' );
 		this.overlay.className += 'tnt-lightbox-overlay hidden';
@@ -56,33 +43,52 @@ class Lightbox {
 		this.prev.addEventListener( 'click', () => { this.openPrev() } );
 		this.next.addEventListener( 'click', () => { this.openNext() } );
 		this.closeButton.addEventListener( 'click', () => { this.close() } );
+
+		document.addEventListener( 'keydown', e => {
+			if( this.opened ) {
+				switch( e.keyCode ) {
+					case 27:
+						this.close();
+						break;
+					case 37:
+						this.openPrev();
+						break;
+					case 39:
+						this.openNext();
+						break;
+				}
+			}
+		} );
 	}
 
 	close() {
+		this.opened = false;
+		this.toggleClass();
 
 		this.box.innerHTML = '';
 		this.overlay.classList.add( 'hidden' );
 	}
 
 	click( event ) {
+		this.opened = true;
+		this.toggleClass();
 
 		this.open( event.currentTarget );
 		event.preventDefault();
 	}
 
 	openNext() {
-
 		this.openByIndex( this.index + 1 );
 	}
 
 	openPrev() {
-
 		this.openByIndex( this.index - 1 );
 	}
 
 	openByIndex( currentIndex ) {
+		console.log( currentIndex );
 
-		if( currentIndex >= 0 ) {
+		if( currentIndex >= 0 && currentIndex < this.elements.length ) {
 			let element = this.elements[ currentIndex ];
 			this.open( element );
 		}
@@ -152,6 +158,12 @@ class Lightbox {
 					this.overlay.classList.remove( 'loading' );
 				} );
 			}
+
+			if( el.getAttribute( 'data-description' ) ) {
+				this.description = document.createElement( 'p' );
+				this.description.innerHTML = el.getAttribute( 'data-description' );
+				this.box.appendChild( this.description );
+			}
 		}
 	}
 
@@ -159,13 +171,16 @@ class Lightbox {
 		return [ ...this.elements ].indexOf( el );
 	}
 
-	hide( el ) {
+	toggleClass()
+	{
+		this.opened ? this.body.classList.add( 'lightbox-open' ) : this.body.classList.remove( 'lightbox-open' );
+	}
 
+	hide( el ) {
 		return el.style.display = 'none';
 	}
 
 	show( el ) {
-
 		return el.style.display = 'inline-block';
 	}
 }
