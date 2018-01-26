@@ -103,6 +103,7 @@ class Lightbox {
 			this.index = currentIndex;
 			this.box.innerHTML = '';
 			this.overlay.classList.remove( 'hidden' );
+			this.overlay.classList.add( 'loading' );
 
 			if( currentIndex === 0 ) {
 				this.hide( this.prev );
